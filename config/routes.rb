@@ -16,8 +16,9 @@ Rails.application.routes.draw do
   get '/merchants/:id/invoices/:inv_id', to: 'merchant_invoices#show'
 
   resources :invoice_items, only: [:update]
-
-  resources :bulk_discounts
+  resources :merchants do
+    resources :bulk_discounts
+  end
 
   namespace :admin do
     get '/', to: 'base#show' #route for admin dashboard
