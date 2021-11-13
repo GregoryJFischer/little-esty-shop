@@ -17,11 +17,12 @@ Rails.application.routes.draw do
 
   resources :invoice_items, only: [:update]
 
+  resources :bulk_discounts
+
   namespace :admin do
     get '/', to: 'base#show' #route for admin dashboard
 
     resources :merchants, only: [:index, :show, :edit, :update, :new, :create]
-    
     get '/invoices', to: 'invoices#index'
     get '/invoices/:id', to: 'invoices#show'
     patch '/invoices/:id', to: 'invoices#update'
