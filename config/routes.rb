@@ -17,7 +17,9 @@ Rails.application.routes.draw do
 
   resources :invoice_items, only: [:update]
 
-  resources :bulk_discounts
+  resources :merchants do
+    resources :bulk_discounts
+  end
 
   namespace :admin do
     get '/', to: 'base#show' #route for admin dashboard

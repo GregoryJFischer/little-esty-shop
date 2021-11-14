@@ -1,0 +1,15 @@
+<h1>Bulk Discounts</h1>
+
+<%= link_to "New Discount", "/merchants/#{@facade.merchant.id}/bulk_discounts/new"%>
+
+<ul>
+  <% @facade.bulk_discounts.each do |bulk_discount| %>
+    <li id="discount-<%= bulk_discount.id %>">
+      Discount: <%= bulk_discount.format_discount %>
+      Threshold: <%= bulk_discount.threshold %><br/>
+      <%= link_to "View", "/merchants/#{bulk_discount.merchant_id}/bulk_discounts/#{bulk_discount.id}"%>
+      <%= link_to "Edit", "/merchants/#{bulk_discount.merchant_id}/bulk_discounts/#{bulk_discount.id}/edit"%>
+      <%= link_to "Delete", "/merchants/#{bulk_discount.merchant_id}/bulk_discounts/#{bulk_discount.id}", method: :delete%>
+    </li>
+  <% end %>
+</ul>
