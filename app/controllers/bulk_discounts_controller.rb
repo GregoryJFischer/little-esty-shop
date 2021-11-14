@@ -1,10 +1,10 @@
 class BulkDiscountsController < ApplicationController
   def index
-    @bulk_discounts = Merchant.find(params[:merchant_id]).bulk_discounts
+    @facade = BulkDiscountsFacade.new(Merchant.find(params[:merchant_id]))
   end
 
   def show
-    @bulk_discounts = BulkDiscount.find(params[:id])
+    @bulk_discount = BulkDiscount.find(params[:id])
   end
 
   def new
