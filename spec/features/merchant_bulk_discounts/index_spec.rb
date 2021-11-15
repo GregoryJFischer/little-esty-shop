@@ -36,4 +36,11 @@ RSpec.describe 'bulk discount index' do
 
     expect(current_path).to eq "/merchants/#{@merchant.id}/bulk_discounts/new"
   end
+
+  it 'lists the next three holidays' do
+    visit merchant_bulk_discounts_path(@merchant)
+
+    expect("Thanksgiving").to appear_before("Christmas Day")
+    expect("Christmas Day").to appear_before("New Year's Day")
+  end
 end
