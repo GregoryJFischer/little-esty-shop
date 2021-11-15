@@ -1,5 +1,12 @@
 <h1>Bulk Discounts</h1>
 
+<h3>Upcoming Holidays</h3>
+<ul id="holidays">
+  <% @facade.names.zip(@facade.dates) do |name, date| %>
+    <li><%= name %>: <%= date %></li>
+  <% end %>
+</ul>
+
 <%= link_to "New Discount", "/merchants/#{@facade.merchant.id}/bulk_discounts/new"%>
 
 <ul>
