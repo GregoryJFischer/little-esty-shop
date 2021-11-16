@@ -11,6 +11,7 @@ RSpec.describe 'show page' do
     @item = create(:item, merchant: @merchant)
     @inv_item = create(:invoice_item, invoice: @invoice, item: @item)
 
+    @discount = create(:bulk_discount, merchant: @merchant, threshold: 0)
 
     visit "/merchants/#{@merchant.id}/invoices/#{@invoice.id}"
   end
@@ -49,5 +50,11 @@ RSpec.describe 'show page' do
       expect(page).to have_select('invoice_item_status', selected: 'shipped')
       expect(page).to have_content('shipped')
     end
+  end
+
+  it 'has a link to discounts' do
+    click_link "Discount"
+
+    expect(current_path).to eq "/merchants/#{@merchant.id}/bulk_discounts/#{@discount.id}"
   end
 end
