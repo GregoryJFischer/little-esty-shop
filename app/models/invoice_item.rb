@@ -31,4 +31,14 @@ class InvoiceItem < ApplicationRecord
     .where("quantity > bulk_discounts.threshold")
     .group("invoice_items.id")
   end
+
+  def find_discount
+    discounts = item.merchant.bulk_discounts
+
+    valid_discounts = discounts.select do |discount|
+      discount.threshold < self.quantity
+    end
+
+    valid_discounts.max_by { |discount| discount.discount }
+  end
 end

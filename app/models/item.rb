@@ -21,7 +21,7 @@ class Item < ApplicationRecord
                                 .select("invoices.created_at AS invoice_created_at")
                                 .where(invoice_items: {status: '0'})
                                 .order(:invoice_created_at) }
-  
+
 
 
   def invoice_item(invoice)

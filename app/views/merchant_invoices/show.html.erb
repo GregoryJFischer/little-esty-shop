@@ -14,6 +14,13 @@
 <% @invoice.items.each do |item| %>
 <div id="item-<%= item.id %>">
     <h4><%= item.name %></h4>
+
+      <% invoice_item = item.invoice_item(@invoice) %>
+      <% discount = invoice_item.find_discount %>
+      <% if discount != nil %>
+        <p><%= link_to "Discount", "/merchants/#{discount.merchant_id}/bulk_discounts/#{discount.id}" %>
+      <% end %>
+
       <p>Quantity: <%= item.invoice_item_quantity(@invoice) %></p>
       <p>Price: <%= number_to_currency(item.invoice_item_price(@invoice)/100.0) %></p>
       <p>Status: <%= item.invoice_item_status(@invoice) %></p> <%= form_for(item.invoice_item(@invoice)) do |f| %>
