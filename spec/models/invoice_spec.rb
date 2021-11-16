@@ -39,13 +39,25 @@ RSpec.describe Invoice, type: :model do
     before :each do
       @invoice = create(:invoice)
 
-      @invoice_item1 = create(:invoice_item, invoice: @invoice, unit_price: 1, quantity: 10)
-      @invoice_item2 = create(:invoice_item, invoice: @invoice, unit_price: 2, quantity: 10)
+      @merchant = create(:merchant)
+
+      @item = create(:item, merchant: @merchant)
+
+      @discount1 = create(:bulk_discount, merchant: @merchant, threshold: 11, discount: 10)
+
+      @invoice_item1 = create(:invoice_item, item: @item, invoice: @invoice, unit_price: 1, quantity: 10)
+      @invoice_item2 = create(:invoice_item, item: @item, invoice: @invoice, unit_price: 2, quantity: 15)
     end
 
     describe '.invoice_revenue' do
       it 'returns the revenue of the invoices belonging to an invoice' do
-        expect(@invoice.invoice_revenue).to eq 30
+        expect(@invoice.invoice_revenue).to eq 40
+      end
+    end
+
+    describe '.total_revenue' do
+      it 'returns the revenue after bulk_discounts' do
+        expect(@invoice.total_revenue).to eq 37
       end
     end
   end
