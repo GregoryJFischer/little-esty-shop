@@ -13,7 +13,7 @@ describe 'edit form' do
 
       fill_in 'Name', with: "Goldman Sachs"
       click_button "Submit"
-      
+
       expect(current_path).to eq("/admin/merchants/#{@merchant.id}")
       expect(page).to have_content "Information has been successfully updated"
 
@@ -25,7 +25,7 @@ describe 'edit form' do
   context 'when no information entered' do
     it 'provides error message and redirects to form' do
       click_button "Submit"
-      
+
       expect(current_path).to eq("/admin/merchants/#{@merchant.id}/edit")
       expect(page).to have_content "Failed to update merchant"
 

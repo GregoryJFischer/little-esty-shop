@@ -8,6 +8,7 @@ class BulkDiscountsController < ApplicationController
   end
 
   def new
+    @merchant = Merchant.find(params[:merchant_id])
   end
 
   def create
@@ -29,10 +30,10 @@ class BulkDiscountsController < ApplicationController
     bulk_discount = BulkDiscount.find(params[:id])
 
     if bulk_discount.update(discount_params)
-      redirect_to merchant_bulk_discounts_path(Merchant.find(params[:merchant_id]))
+      redirect_to "/merchants/#{bulk_discount.merchant_id}/bulk_discounts/#{bulk_discount.id}"
     else
       flash[:alert] = "Error - could not update bulk discount"
-      redirect_to merchant_bulk_discounts_path(Merchant.find(params[:merchant_id]))
+      redirect_to "/merchants/#{bulk_discount.merchant_id}/bulk_discounts/#{bulk_discount.id}"
     end
   end
 
