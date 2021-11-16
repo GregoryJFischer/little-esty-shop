@@ -44,7 +44,7 @@ RSpec.describe Invoice, type: :model do
       @item = create(:item, merchant: @merchant)
 
       @discount1 = create(:bulk_discount, merchant: @merchant, threshold: 11, discount: 10)
-      @discount1 = create(:bulk_discount, merchant: @merchant, threshold: 11, discount: 5)
+      @discount2 = create(:bulk_discount, merchant: @merchant, threshold: 11, discount: 5)
 
       @invoice_item1 = create(:invoice_item, item: @item, invoice: @invoice, unit_price: 1, quantity: 10)
       @invoice_item2 = create(:invoice_item, item: @item, invoice: @invoice, unit_price: 2, quantity: 15)
