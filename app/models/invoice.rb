@@ -23,4 +23,14 @@ class Invoice < ApplicationRecord
   def invoice_revenue
     invoice_items.invoice_item_revenue
   end
+
+  def discounts
+    invoice_items.discounts.sum do |invoice_item, revenue|
+      revenue
+    end
+  end
+
+  def total_revenue
+    invoice_revenue - discounts
+  end
 end
