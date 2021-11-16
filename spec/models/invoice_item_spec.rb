@@ -14,15 +14,16 @@ RSpec.describe InvoiceItem, type: :model do
 
       @item = create(:item, merchant: @merchant)
 
-      @discount1 = create(:bulk_discount, merchant: @merchant, threshold: 11, discount: 10)
-      @discount2 = create(:bulk_discount, merchant: @merchant, threshold: 11, discount: 5)
+      @discount1 = create(:bulk_discount, merchant: @merchant, threshold: 5, discount: 5)
+      @discount2 = create(:bulk_discount, merchant: @merchant, threshold: 5, discount: 10)
+      @discount3 = create(:bulk_discount, merchant: @merchant, threshold: 15, discount: 15)
 
       @invoice_item = create(:invoice_item, item: @item, invoice: @invoice, unit_price: 1, quantity: 10)
     end
 
     describe 'find_discount' do
       it 'finds the discount associated with the invoice item' do
-        expect(@invoice_item.find_discount).to eq @discount1
+        expect(@invoice_item.find_discount).to eq @discount2
       end
     end
   end
