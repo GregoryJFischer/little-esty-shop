@@ -1,6 +1,6 @@
 # Little Esty Shop
 
-[Link to Page](https://quiet-sands-26565.herokuapp.com)
+[Link to Page](https://little-esty-shop-bd.herokuapp.com/)
 
 ## Description
 
@@ -11,6 +11,7 @@ It holds data for the merchants and customers that would be using the store incl
 ## Pages
 
 There are two main sections of the website; one for merchants and one for site admins each with their respective dashboard pages.
+The Admin dashboard is accessed using /admin and the Merchant dashboard is accessed using /merchants/:id
 
 On the merchant dashboard, you are able to see information about that merchant, including statistics on the customers and items ready to ship. It also has links to pages with more information about the items and invoices that belong to that specific merchant.
 
